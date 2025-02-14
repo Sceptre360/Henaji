@@ -1,101 +1,59 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const gasCylinders = [
+    { id: 1, size: "3kg", price: 1000, image: "/3kg-gas.png" },
+    { id: 2, size: "6kg", price: 2000, image: "/6kg-gas.png" },
+    { id: 3, size: "13kg", price: 3500, image: "/13kg-gas.png" },
+  ];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  return (
+    <div className="min-h-screen p-8">
+      <header className="flex justify-between items-center mb-8">
+        <h1 className="text-2xl font-bold">Gas Connect</h1>
+        <div className="flex gap-4">
+          <Link 
+            href="/login"
+            className="px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Login
+          </Link>
+          <Link 
+            href="/signup"
+            className="px-4 py-2 rounded-lg border border-blue-500 text-blue-500 hover:bg-blue-50"
           >
-            Read our docs
-          </a>
+            Sign Up
+          </Link>
         </div>
+      </header>
+
+      <main>
+        <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {gasCylinders.map((cylinder) => (
+            <div 
+              key={cylinder.id} 
+              className="p-6 border rounded-lg shadow-sm hover:shadow-md transition-shadow"
+            >
+              <Image
+                src={cylinder.image}
+                alt={`${cylinder.size} Gas Cylinder`}
+                width={200}
+                height={200}
+                className="mx-auto mb-4"
+              />
+              <h2 className="text-xl font-semibold mb-2">{cylinder.size} Cylinder</h2>
+              <p className="text-gray-600 mb-4">Ksh {cylinder.price}</p>
+              <button 
+                className="w-full py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
+                onClick={() => {/* Add order handling logic */}}
+              >
+                Order Now
+              </button>
+            </div>
+          ))}
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }

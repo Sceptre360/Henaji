@@ -1,5 +1,5 @@
 {
-  "name": "nextjs",
+  "name": "gas-connect",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "15.1.4",
+    "@heroicons/react": "^2.2.0",
+    "@prisma/client": "^6.3.1",
+    "next": "15.1.7",
+    "next-auth": "^4.24.11",
+    "prisma": "^6.3.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
@@ -19,9 +23,9 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.1.4",
+    "eslint-config-next": "15.1.7",
     "postcss": "^8",
-    "tailwindcss": "^3.4.17",
+    "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
 }
