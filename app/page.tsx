@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import GasCylinderCard from "@/app/components/GasCylinderCard";
 
 export default function Home() {
   const gasCylinders = [
@@ -31,26 +31,10 @@ export default function Home() {
       <main>
         <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {gasCylinders.map((cylinder) => (
-            <div 
-              key={cylinder.id} 
-              className="p-6 border rounded-lg shadow-sm hover:shadow-md transition-shadow"
-            >
-              <Image
-                src={cylinder.image}
-                alt={`${cylinder.size} Gas Cylinder`}
-                width={200}
-                height={200}
-                className="mx-auto mb-4"
-              />
-              <h2 className="text-xl font-semibold mb-2">{cylinder.size} Cylinder</h2>
-              <p className="text-gray-600 mb-4">Ksh {cylinder.price}</p>
-              <button 
-                className="w-full py-2 bg-green-500 text-white rounded-lg hover:bg-green-600"
-                onClick={() => {/* Add order handling logic */}}
-              >
-                Order Now
-              </button>
-            </div>
+            <GasCylinderCard
+              key={cylinder.id}
+              {...cylinder}
+            />
           ))}
         </section>
       </main>
